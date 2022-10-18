@@ -1,0 +1,28 @@
+package ch14;
+
+public class ChatMgr3 {
+	
+	private DBConnectionMgr pool;
+	
+	public ChatMgr3() {
+		pool=DBConnectionMgr.getInstance();
+	}
+	
+	//·Î±×ÀÎ
+	public boolean loginChk(String id, String pwd) {
+		Connection con=null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null
+		String sql=null;
+		boolean flag=false
+		try {
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			
+		}
+		return flag;
+	}
+
+}

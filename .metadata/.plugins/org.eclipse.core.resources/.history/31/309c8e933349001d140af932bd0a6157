@@ -1,0 +1,20 @@
+package ch14;
+
+public class EchoServer {
+
+	int port=8001;
+	
+	public EchoServer() {
+		
+	}
+	
+	class EchoThread extends Thread{
+		
+	}
+	
+	public static void main(String[] args) {
+		new EchoServer();
+
+	}
+
+}

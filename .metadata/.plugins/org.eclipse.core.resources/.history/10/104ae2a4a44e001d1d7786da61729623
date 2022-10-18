@@ -1,0 +1,11 @@
+package ch14;
+
+public class ChatMgr3 {
+	
+	private DBConnectionMgr pool;
+	
+	public ChatMgr3() {
+		pool=DBConnectionMgr.getInstance();
+	}
+
+}

@@ -1,0 +1,77 @@
+package ch14;
+
+import java.io.BufferedReader;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.Vector;
+
+public class ChatServer1 {
+	
+	ServerSocket server;
+	int port = 8002;
+	Vector<ClientThread1> vc;
+	
+	public ChatServer1() {
+		try {
+			server = new ServerSocket(port);
+			vc = new Vector<ChatServer1.ClientThread1>();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Error in Server");
+			System.exit(1);//비정상적인 종료
+		}
+		System.out.println("*ChatServer1***************");
+		System.out.println("*Client 접속을 기다리고 있습니다.*");
+		System.out.println("***************************");
+		try {
+			while(true) {
+				Socket sock = server.accept();
+				ClientThread1 ct = new ClientThread1(sock);
+				ct.start();//쓰레드 스케줄러에 등록 -> run 메소드 호출
+				vc.addElement(ct);//ClientThread 객체를 벡터에 저장
+			}
+			
+		} catch (Exception e) {
+			System.out.println("Error in sock");
+			e.printStackTrace();
+		}
+	}
+	
+	
+	class ClientThread1 extends Thread{
+		
+		Socket sock;
+		BufferedReader in;
+		PrintWriter out;
+		String id;		
+		
+		public ClientThread1(Socket sock) {
+			
+		}
+		
+		@Override
+		public void run() {
+			
+		}
+		
+		//Client에게 메세지 전달 메소드
+		public void sendMessage(String msg) {
+			out.println(msg);
+		}
+		
+	}
+
+	public static void main(String[] args) {
+		new ChatServer1();
+		
+
+	}
+
+}
+
+
+
+
+
+

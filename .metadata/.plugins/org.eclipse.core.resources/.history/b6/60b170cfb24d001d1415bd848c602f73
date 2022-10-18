@@ -1,0 +1,22 @@
+package ch14;
+
+public class ChatServer1 {
+	
+	ServerSoceket server;
+	int port = 8002;
+	
+	public ChatServer1() {
+		
+	}
+	
+	class ClientThread1 extendsThread{
+		
+	}
+
+	public static void main(String[] args) {
+		new ChatServer1();
+		
+
+	}
+
+}

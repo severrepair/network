@@ -1,0 +1,20 @@
+package ch14;
+
+public class ChatProtocol2 {
+	
+	//(C->S)ID:aaa
+	//(S->C)CHALLIST:aaa;bbb;ccc;°­È£µ¿;
+	public static final String ID= "ID";
+
+}
+
+
+
+
+
+
+
+
+
+
+

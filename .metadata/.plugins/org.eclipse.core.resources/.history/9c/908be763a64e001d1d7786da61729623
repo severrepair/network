@@ -1,0 +1,32 @@
+package ch14;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+public class ChatMgr3 {
+	
+	private DBConnectionMgr pool;
+	
+	public ChatMgr3() {
+		pool=DBConnectionMgr.getInstance();
+	}
+	
+	//·Î±×ÀÎ
+	public boolean loginChk(String id, String pwd) {
+		Connection con=null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql=null;
+		boolean flag=false;
+		try {
+			con = pool.getConnection();//Connection ºô·Á¿È
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			//conÀº ¹Ý³³, pstmt, rs µÑ´Ù close
+		}
+		return flag;
+	}
+
+}

@@ -1,0 +1,25 @@
+package ch14;
+
+import java.net.ServerSocket;
+
+public class ChatServer1 {
+	
+	ServerSocket server;
+	int port = 8002;
+	Vector<ClientThread1> vc;
+	
+	public ChatServer1() {
+		
+	}
+	
+	class ClientThread1 extends Thread{
+		
+	}
+
+	public static void main(String[] args) {
+		new ChatServer1();
+		
+
+	}
+
+}
