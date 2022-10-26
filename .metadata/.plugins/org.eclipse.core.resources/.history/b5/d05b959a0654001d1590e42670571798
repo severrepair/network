@@ -1,0 +1,53 @@
+package ch14;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.util.Vector;
+
+public class MsgMgr4 {
+	
+	private DBConnectionMgr pool;
+	
+	public MsgMgr4() {
+		pool = DBConnectionMgr.getInstance();
+	}
+	
+	//insert
+	public void insertMsg(MessageBean4 bean) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		try {
+			con = pool.getConnection();//Connection ºô·Á¿È
+			sql = "insert tblMessage(fid, tid, msg)values(?,?,?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1,bean.getFid());
+			pstmt.setString(2,bean.getTid());
+			pstmt.setString(3,bean.getMsg());
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt);
+		}
+	}
+	
+	//list
+	public Vector<MessageBean4> getMsgList(){//¹Þ´Â°Å¶û ÁÖ´Â°ÔÀÖ´Ù.
+		
+	}
+	
+	//get
+
+}
+
+
+
+
+
+
+
+
+
+
+

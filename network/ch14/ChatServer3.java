@@ -125,7 +125,25 @@ public class ChatServer3 {
 				idx = data.indexOf(';');//data -> aaa;1234
 				cmd = data.substring(0, idx);//aaa
 				data = data.substring(idx+1);//1234
-				System.out.println(mgr.loginChk(cmd, data));
+				if(mgr.loginChk(cmd, data)) {
+					//접속한 id로 기존에 Client가 있는지 검색
+					ClientThread3 ct= findClient(cmd);
+					System.out.println("ct.id:" + ct.id);
+					if(ct!=null&&ct.id!=null&&ct.id.equals(cmd)) {//이중접속
+						sendMessage(ChatProtocol3.ID+ChatProtocol3.DM+"C");
+					}else {//로그인 성공
+						id=cmd;//aaa
+						sendMessage(ChatProtocol3.ID+ChatProtocol3.DM+"T");
+						sendAllMessage(ChatProtocol3.CHATLIST+ChatProtocol3.DM+
+								getIds());//Thread클래스에 이미 getId가 있다.
+						sendAllMessage(ChatProtocol3.CHATALL+ChatProtocol3.DM+
+								"["+id+"]님이 입장하였습니다.");
+					}
+				}else {//로그인 실패
+					sendMessage(ChatProtocol3.ID+ChatProtocol3.DM+"F");
+				}
+//				222-10-24
+					
 			}else if(cmd.equals(ChatProtocol3.CHAT)) {
 				idx = data.indexOf(';');
 				cmd = data.substring(0, idx);//bbb

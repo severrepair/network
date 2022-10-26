@@ -1,0 +1,32 @@
+package ch14;
+
+public class MsgMgr4 {
+	
+	private DBConnectionMgr pool;
+	
+	public MsgMgr4() {
+		pool = DBConnectionMgr.getInstance();
+	}
+	
+	//insert
+	public void insertMsg(MessageBean4 bean) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		try {
+			con = pool.getConnection();//Connection ºô·Á¿È
+			sql = "";
+			pstmt = con.prepareStatement(sql);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt);
+		}
+	}
+	
+	//list
+	
+	//get
+
+}

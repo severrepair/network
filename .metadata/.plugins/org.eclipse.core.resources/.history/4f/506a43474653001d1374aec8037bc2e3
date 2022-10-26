@@ -1,0 +1,25 @@
+package Talk1;
+
+public class TalkServer {
+	
+	ServerSocket server;
+	int port = 8006;
+	Vector<ClientThread1> vc;
+	
+	public TalkServer() {
+		try {
+			server = new ServerSocket(prot);
+			vc = new Vector<TalkServer.ClientThread1>();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Error in Server");
+			System.out.println(1);//비정상적인 종료
+		}
+		System.out.println("*TalkServer***************");
+		System.out.println("*Client 접속을 기다리고 있습니다.*");
+		System.out.println("***************************");
+		
+		
+	}
+
+}

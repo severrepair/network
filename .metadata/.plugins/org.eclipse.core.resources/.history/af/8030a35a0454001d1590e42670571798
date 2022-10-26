@@ -1,0 +1,15 @@
+package ch14;
+
+import lombok.Data;
+
+public class MessageBean4 {
+	
+@Data
+	
+	private int no;
+	private String fid;
+	private String tid;
+	private String msg;
+	private String mdate;
+
+}

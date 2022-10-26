@@ -61,12 +61,34 @@ class LoginAWT3 extends MFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object obj = e.getSource();
+		//서버로 id,pwd 전송 2022-10-24
+		try {
 		if(obj==logBtn) {
 			connect();
 			id = idTf.getText().trim();
 			out.println(ChatProtocol3.ID+ChatProtocol3.DM+id+";"
 			+pwTf.getText().trim());
+			String line = in.readLine();
+			int idx = line.indexOf(ChatProtocol3.DM);
+			String cmd = line.substring(0, idx);
+			String data = line.substring(idx+1);
+			if(cmd.equals(ChatProtocol3.ID)) {
+				if(data.equals("F")) {//로그인 실패
+					msgl.setForeground(Color.RED);
+					msgl.setText(label[1]);//ID,pwd확인하세요.
+				}else if(data.equals("C")) {//이중접속
+					msgl.setForeground(Color.BLUE);
+					msgl.setText(label[2]);//ID,pwd확인하세요.
+				}else if(data.equals("T")) {//로그인 성공
+					//dispose();//창이 사라짐.
+					new ChatClient3(in, out, id);//client3 연결
+				}
+			}
+			}
+		}catch (Exception e2) {
+			e2.printStackTrace();
 		}
+//		2022-10-24
 	}
 	
 	public void connect() {

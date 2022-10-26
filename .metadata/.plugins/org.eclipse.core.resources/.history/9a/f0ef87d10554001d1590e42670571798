@@ -1,0 +1,20 @@
+package ch14;
+
+public class MsgMgr4 {
+	
+	private DBConnectionMgr pool;
+	
+	public MsgMgr4() {
+		pool = DBConnectionMgr.getInstance();
+	}
+	
+	//insert
+	public void insertMsg(MessageBean4 bean) {
+		
+	}
+	
+	//list
+	
+	//get
+
+}

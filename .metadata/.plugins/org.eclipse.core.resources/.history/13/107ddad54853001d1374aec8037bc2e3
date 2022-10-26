@@ -1,0 +1,96 @@
+package Talk1;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.Vector;
+
+public class TalkServer {
+	
+	ServerSocket server;
+	int port = 8006;
+	Vector<ClientThread1> vc;
+	
+	public TalkServer() {
+		try {
+			server = new ServerSocket(port);
+			vc = new Vector<TalkServer.ClientThread1>();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Error in Server");
+			System.out.println(1);//비정상적인 종료
+		}
+		System.out.println("*TalkServer****************");
+		System.out.println("*Client 접속을 기다리고 있습니다.*");
+		System.out.println("***************************");
+		try {
+			while(true) {
+				Socket sock = server.accept();
+				ClientThread1 ct = new ClientThread1(sock);
+				ct.start();
+				vc.addElement(ct);
+			}
+		} catch (Exception e) {
+			System.out.println("Error in sock");
+			e.printStackTrace();
+		}
+	}
+	
+	//모든 접속된 Client에게 메세지 전달
+	public void sendAllMessage(String msg) {
+		for(int i=0; i<vc.size(); i++) {
+			//Vector에 저장된 ClientThread를 순차적으로 가져옴
+			ClientThread1 ct = vc.get(i);
+			ct.sendMessage(msg);
+		}
+	}
+	
+
+	public void removeClinet(ClientThread1 ct) {
+		vc.remove(ct);
+	}
+	class ClientThread1 extends Thread {
+		
+		Socket sock;
+		BufferedReader in;
+		PrintWriter out;
+		String id;
+		
+		public ClientThread1(Socket sock) {
+			try {
+				this.sock=sock;
+				in = new BufferedReader(
+					new InputStreamReader(sock.getInputStream()));
+				out = new PrintWriter(sock.getOutputStream(), true);
+				System.out.println(sock + "접속됨....");
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		@Override
+		Public void run() {
+			try {
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
